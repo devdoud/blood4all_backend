@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Doctor {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  firstname String
+  lastname  String
+  email     String   @unique
+  telephone String
+  password  String
+  profil    String?
+  //new fields
+  hopital   String
+
+  //all relations
+  blood   Blood[]
+  reserve reservation[]
+}
+
+model Blood {
+  id            String       @id @default(cuid())
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  bloodGroupe   String
+  //new fields
+  quantity      Int
+  //all relations
+  reserve       reservation? @relation(fields: [reservationId], references: [id])
+  Doctor        Doctor?      @relation(fields: [doctorId], references: [id])
+  doctorId      String?
+  reservationId String?
+  bloodBank     bloodBank?   @relation(fields: [bloodBankId], references: [id])
+  bloodBankId   String?
+}
+
+model reservation {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  pocketNumber Int
+
+  //all relation
+  Doctor      Doctor?   @relation(fields: [doctorId], references: [id])
+  doctorId    String?
+  Blood       Blood[]
+  bloodBank   bloodBank @relation(fields: [bloodBankId], references: [id])
+  bloodBankId String
+}
+
+model bloodBank {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  nameBankBlood String   @unique
+  adresse       String
+  longitude     Float
+  lagitude      Float
+
+  //all relations
+  blood       Blood[]
+  reservation reservation[]
+}
+
+// model Historique {
+//   id        String   @id @default(cuid())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+
+//   //all relations
+//   doctor   Doctor @relation(fields: [doctorId], references: [id])
+//   doctorId String
+// }
