@@ -5,7 +5,7 @@
 /.pnp
 .pnp.
 /.vscode
-
+.env
 # testing
 /coverage
 

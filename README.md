@@ -12,3 +12,14 @@ D'une part aux medecins de pouvoir faire la recherche de sang a partir du groupe
 D'autre part, les banques de sang vont pouvoir consulter le nombre de poches de sang disponible en stock par groupe sanguin et facteur rhesus. Et mettre a jour le stock une fois qu'une poche de sang est achetee.
 
 # Installation
+
+## cloner le projet
+
+```
+git clone https://github.com/EtuDoud/blood4all_backend.git
+```
+## Installer les dependances
+```
+npm install
+```
+
