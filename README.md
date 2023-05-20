@@ -15,11 +15,17 @@ D'autre part, les banques de sang vont pouvoir consulter le nombre de poches de 
 
 1- Permettre aux utilisateurs de consulter la liste des banques de sang plus proche d'eux. la Banque de Sang presentera les informations suivantes : les horriares d'ouverture et de fermeture, les besoins en sang et les indications pour s'y rendre.
 
-2- Mettre en place des rappel de son sang.
+2- Mettre en place des rappel de don sang.
 
 3-Campagne de sensibilisation
 
 4-Les users peuvent partager leur experience sur les reseau sociaux.
+
+5-Recherche de sang dans les banques de sang par les medecins.
+
+6-Generation de qr code.
+
+7-Possibilite du partage du code qr du docteur au parents  via les reseaux sociaux.
 
 # Installation
 
