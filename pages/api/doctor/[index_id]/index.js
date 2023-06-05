@@ -15,7 +15,7 @@ export default async function handler(req, res) {
             //quand la requette ne contient aucune data
             if(!req.body) res.status(404).json({ message: "votre requette ne contient aucune information" });
             
-            const {groupeSanguin, nombrePoches} = req.body;
+            const {groupeSanguin, nombrePoches} = req.body; // il est necessaire que j'ajoute ici le type de sang
             
             // [
             //     ["Nom banque", [x, y], ["O-", "O+", "B-", "B+", "A-", "A+", "AB-", "AB+"], [5, 8, 7, 8, 9, 9]]

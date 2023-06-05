@@ -10,6 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  firstname String
+  lastname  String
+  email     String   @unique
+  telephone String
+  password  String
+  profil    String?
+
+  //all relations
+
+}
+
 model Doctor {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
@@ -21,7 +36,8 @@ model Doctor {
   password  String
   profil    String?
   //new fields
-  hopital   String
+  hopital   String // je vais enlever cette partie.
+  numOrdreNational String
 
   //all relations
   blood   Blood[]
@@ -47,7 +63,7 @@ model Blood {
 model reservation {
   id           String   @id @default(cuid())
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  updatedAt    DateTime @updatedAt  
   pocketNumber Int
 
   //all relation

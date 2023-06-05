@@ -1,4 +1,19 @@
 -- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "firstname" TEXT NOT NULL,
+    "lastname" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "telephone" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "profil" TEXT,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Doctor" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -8,9 +23,9 @@ CREATE TABLE "Doctor" (
     "email" TEXT NOT NULL,
     "telephone" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "ifu" TEXT NOT NULL,
     "profil" TEXT,
     "hopital" TEXT NOT NULL,
+    "numOrdreNational" TEXT NOT NULL,
 
     CONSTRAINT "Doctor_pkey" PRIMARY KEY ("id")
 );
@@ -53,6 +68,9 @@ CREATE TABLE "bloodBank" (
 
     CONSTRAINT "bloodBank_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Doctor_email_key" ON "Doctor"("email");
