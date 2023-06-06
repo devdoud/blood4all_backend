@@ -89,7 +89,7 @@ export default async function handler(req, res) {
 
                 console.log(bloodData)
            
-                //definir des coordonnees predefiinirs
+                //definir des coordonnees predefinirs
                 let points = [
                     [0, 1],
                     [1, 7],
@@ -243,6 +243,8 @@ export default async function handler(req, res) {
                 let search = [];
                 search.push(groupeSanguin);
                 search.push( (nombrePoches * 300) );
+                //Je veux pouvoir egalement permettre au medecin de rechercher le type de sang
+                
                 const allFound = removeDuplicateResults(makeSearchByRadius(bloodData, search))
                 
 
