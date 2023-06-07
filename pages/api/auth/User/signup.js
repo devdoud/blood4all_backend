@@ -1,6 +1,7 @@
 
 import bcrypt from "bcrypt"
 import { prisma } from "../../../../lib/prismadb"
+import jwt from 'jsonwebtoken'
 
 export default async function handler(req, res){
     const salt = bcrypt.genSaltSync();

@@ -80,8 +80,12 @@ model bloodBank {
   updatedAt     DateTime @updatedAt
   nameBankBlood String   @unique
   adresse       String
-  longitude     Float
-  lagitude      Float
+  longitude     Float?
+  lagitude      Float?
+  //les nouvelles infos a complete
+  //horraires d'ouverture et de fermeture
+  //numero de telephone
+  //email
 
   //all relations
   blood       Blood[]
