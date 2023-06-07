@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt"
-import { prisma } from "../../../lib/prismadb"
+import { prisma } from "../../../../lib/prismadb"
 import { serialize } from "cookie";
 import jwt from 'jsonwebtoken'
 
