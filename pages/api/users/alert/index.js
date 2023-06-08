@@ -1,0 +1,5 @@
+/* Je veux permettre a tout utilisateur desirant de pouvoir recevoir des alertes 
+    pour des dons de sang sur chaque intervalle de tois mois
+    Il aura la notification directement sur son telephone comme les notification whatsapp
+    
+*/
