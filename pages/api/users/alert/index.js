@@ -3,3 +3,7 @@
     Il aura la notification directement sur son telephone comme les notification whatsapp
     
 */
+
+export default function handler(req, res) {
+    
+}
