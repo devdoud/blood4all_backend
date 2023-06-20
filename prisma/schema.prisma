@@ -51,6 +51,8 @@ model Blood {
   bloodGroupe   String
   //new fields
   quantity      Int
+  //add the product type
+  productType   String
   //all relations
   reserve       reservation? @relation(fields: [reservationId], references: [id])
   Doctor        Doctor?      @relation(fields: [doctorId], references: [id])

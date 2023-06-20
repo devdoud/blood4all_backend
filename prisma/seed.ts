@@ -17,42 +17,52 @@ async function main() {
                 create: [
                     {
                         bloodGroupe: 'O+',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'globule rouge',
                     },
                     {
                         bloodGroupe: 'O+',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'globule rouge',
                     },
                     {
                         bloodGroupe: 'O+',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'plasma frais congele',
                     },
                     {
                         bloodGroupe: 'O-',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'plama frais congele',
                     },
                     {
                         bloodGroupe: 'O-',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'plasma albumine',
                     },
                     {
                         bloodGroupe: 'A+',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'plasma albumine',
                     }, {
                         bloodGroupe: 'A+',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'globule rouge',
                     },
                     {
                         bloodGroupe: 'A-',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'plasma albumine',
                     },
                     {
                         bloodGroupe: 'AB+',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'plasma frais congele',
                     },
                     {
                         bloodGroupe: 'AB-',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'plasma albumine',
                     },
                 ] 
             }
@@ -71,42 +81,52 @@ async function main() {
                 create: [
                     {
                         bloodGroupe: 'O+',
-                        quantity: 600
+                        quantity: 600,
+                        productType: 'plasma albumine',
                     },
                     {
                         bloodGroupe: 'O-',
-                        quantity: 900
+                        quantity: 900,
+                        productType: 'globule rouge',
                     },
                     {
                         bloodGroupe: 'O+',
-                        quantity: 1200
+                        quantity: 1200,
+                        productType: 'plasma albumine',
                     },
                     {
                         bloodGroupe: 'O-',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'plasma albumine',
                     },
                     {
                         bloodGroupe: 'O-',
-                        quantity: 900
+                        quantity: 900,
+                        productType: 'plasma frais congele',
                     },
                     {
                         bloodGroupe: 'A+',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'plasma frais congele',
                     }, {
                         bloodGroupe: 'A+',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'plasma albumine',
                     },
                     {
                         bloodGroupe: 'A-',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'globule rouge',
                     },
                     {
                         bloodGroupe: 'AB+',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'globule rouge',
                     },
                     {
                         bloodGroupe: 'AB-',
-                        quantity: 300
+                        quantity: 300,
+                        productType: 'plasma frais congele',
                     },
                 ] 
             }

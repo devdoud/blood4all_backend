@@ -15,10 +15,16 @@ export default async function handler(req, res) {
             //quand la requette ne contient aucune data
             if(!req.body) res.status(404).json({ message: "votre requette ne contient aucune information" });
             
-            const {groupeSanguin, nombrePoches} = req.body; // il est necessaire que j'ajoute ici le type de sang
+            //je veux pouvoir ajouter maintenant le type de produit recherche
+            //Globule rouge
+            //Plasma frais congelé
+            //Plasma albumine
+            //Concentrés de plaquettes
+            //Cryoprecipitate
+            const {groupeSanguin, nombrePoches, productType} = req.body; // il est necessaire que j'ajoute ici le type de sang
             
             // [
-            //     ["Nom banque", [x, y], ["O-", "O+", "B-", "B+", "A-", "A+", "AB-", "AB+"], [5, 8, 7, 8, 9, 9]]
+            //     ["Nom banque", [x, y], ["O-", "O+", "B-", "B+", "A-", "A+", "AB-", "AB+"], [5, 8, 7, 8, 9, 9], ['plasma', 'congele']]
             // ],
 
             try {
@@ -31,7 +37,9 @@ export default async function handler(req, res) {
                         blood: {
                             select: {
                                 bloodGroupe: true,
-                                quantity: true
+                                quantity: true,
+                                productType: true,
+                                //Je veux aussi recupere le type de produit
                             }
                         }
                     }
@@ -46,6 +54,9 @@ export default async function handler(req, res) {
                         let coordonnee = [];
                         let allBloodGroupeInBank = [];
                         let allBloodQuantityInBank = [];
+                        //creer une nouvelle liste pour recuperer les type de sang
+
+                        let allBloodProductType = [];
 
                         resultats.push(info.nameBankBlood);
                         coordonnee.push(info.lagitude);
@@ -59,7 +70,7 @@ export default async function handler(req, res) {
                                 if(existant) {
                                     existant.quantity += obj.quantity;
                                 } else {
-                                    acc.push({bloodGroupe: obj.bloodGroupe, quantity: obj.quantity })
+                                    acc.push({bloodGroupe: obj.bloodGroupe, quantity: obj.quantity, productType: obj.productType })
                                 }
 
                                 return acc;
@@ -71,15 +82,18 @@ export default async function handler(req, res) {
                         newListe.map(
                             (item) => {
                                 allBloodGroupeInBank.push(item.bloodGroupe);
-                                allBloodQuantityInBank.push(item.quantity)
+                                allBloodQuantityInBank.push(item.quantity);
+                                allBloodProductType.push(item.productType);
                             }
                         )
 
                         console.log(allBloodGroupeInBank)
                         console.log(allBloodQuantityInBank)
+                        console.log(allBloodProductType)
 
                         resultats.push(allBloodGroupeInBank)
                         resultats.push(allBloodQuantityInBank)
+                        resultats.push(allBloodProductType)
                         
                         return resultats;
         
@@ -89,7 +103,7 @@ export default async function handler(req, res) {
 
                 console.log(bloodData)
            
-                //definir des coordonnees predefinirs
+                //predefinir les coordonnees
                 let points = [
                     [0, 1],
                     [1, 7],
@@ -148,16 +162,22 @@ export default async function handler(req, res) {
                     let founds = []
                     let searchedBlood = search[0]
                     let searchNb = search[1]
+                    //Le type de produit sanguin
+
+                    let searchProductType = search[2]
 
                     for (let i = 0; i < dataOfDB.length; i++) {
                         const bankPosition = dataOfDB[i][1]
                         const bankGroups = dataOfDB[i][2]
                         const bankGroupsNbs = dataOfDB[i][3]
+                        //je vais ajouter le tableau comme quatrieme element de datadb
+                        const bankGroupsProType = dataOfDB[i][4]
+
                         const distance = Math.sqrt(Math.pow(bankPosition[0] - x, 2) + Math.pow(bankPosition[1] - y, 2))
 
                         if (distance <= radius) {
                             const bloodPos = dataIsInArray(bankGroups, searchedBlood)
-                            if (bloodPos != -1 && bankGroupsNbs[bloodPos] >= searchNb) {
+                            if (bloodPos != -1 && bankGroupsNbs[bloodPos] >= searchNb && bankGroupsProType[bloodPos] == searchProductType) {
                                 founds.push([dataOfDB[i][0], distance])
                             }
                         }
@@ -243,6 +263,7 @@ export default async function handler(req, res) {
                 let search = [];
                 search.push(groupeSanguin);
                 search.push( (nombrePoches * 300) );
+                search.push(productType);
                 //Je veux pouvoir egalement permettre au medecin de rechercher le type de sang
                 
                 const allFound = removeDuplicateResults(makeSearchByRadius(bloodData, search))

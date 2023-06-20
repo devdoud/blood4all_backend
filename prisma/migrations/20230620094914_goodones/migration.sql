@@ -37,6 +37,7 @@ CREATE TABLE "Blood" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "bloodGroupe" TEXT NOT NULL,
     "quantity" INTEGER NOT NULL,
+    "productType" TEXT NOT NULL,
     "doctorId" TEXT,
     "reservationId" TEXT,
     "bloodBankId" TEXT,
@@ -63,8 +64,8 @@ CREATE TABLE "bloodBank" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "nameBankBlood" TEXT NOT NULL,
     "adresse" TEXT NOT NULL,
-    "longitude" DOUBLE PRECISION NOT NULL,
-    "lagitude" DOUBLE PRECISION NOT NULL,
+    "longitude" DOUBLE PRECISION,
+    "lagitude" DOUBLE PRECISION,
 
     CONSTRAINT "bloodBank_pkey" PRIMARY KEY ("id")
 );
