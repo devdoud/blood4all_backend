@@ -1,4 +1,4 @@
-import { prisma } from "../../../lib/prismadb"
+import { prisma } from '@/lib/prismadb';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { serialize } from "cookie";
