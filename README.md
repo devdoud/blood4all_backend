@@ -38,4 +38,68 @@ git clone https://github.com/EtuDoud/blood4all_backend.git
 ```
 npm install
 ```
+## Signup for doctor
+```
+https://blood4all-backend.vercel.app/api/auth/doctor/signup
+```
+### Credentials
+```
+{
+  "firstname": "Ayinde",
+  "lastname": "Olagoke",
+  "email": "adeyemi@gmail.com",
+  "telephone": "0022996173296",
+  "password": "password",
+  "numOrdreNational": "NUM/0000/ONMB/DEP/AAAA",
+  "hopital": "CNHU"
+}
+```
+### result 
+```
+{
+  "user": {
+    "id": "clj5m9sww0000mo08tojglpa5",
+    "createdAt": "2023-06-21T11:14:10.195Z",
+    "updatedAt": "2023-06-21T11:14:10.195Z",
+    "firstname": "Adeyemi",
+    "lastname": "Olagoke",
+    "email": "adeyemi@gmail.com",
+    "telephone": "0022996173296",
+    "password": "$2b$10$MEnA7hEGWYA2NKFam1SgDeLAWJ1GrmxNVYdWCV4T2aGnDhrXFm/HO",
+    "profil": null,
+    "hopital": "CNHU",
+    "numOrdreNational": "NUM/0000/ONMB/DEP/AAAA"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsajVtOXN3dzAwMDBtbzA4dG9qZ2xwYTUiLCJlbWFpbCI6ImFkZXllbWlAZ21haWwuY29tIiwiaWF0IjoxNjg3MzYzOTE5LCJleHAiOjE2ODczNjc1MTl9.DVH-DH9H6K5V9jzQM2skRwD8nPwk4agezRKEIb4iBq0"
+}
+```
+## SignIn
+```
+https://blood4all-backend.vercel.app/api/auth/doctor/signin
+```
+### credential
+```
+{
+  "email": "alade@gmail.com",
+  "password": "tete"
+}
+```
+### result
+```
+{
+  "user": {
+    "id": "clj5xye650000ml08m68lofnp",
+    "createdAt": "2023-06-21T16:41:13.196Z",
+    "updatedAt": "2023-06-21T16:41:13.196Z",
+    "firstname": "Alade",
+    "lastname": "Oyinbo",
+    "email": "alade@gmail.com",
+    "telephone": "0022996173296",
+    "password": "$2b$10$pzQNkYPv1WV7Fk4KEJILYuoshwCWevDtjxAbn3L0yuycGjffgW0Q6",
+    "profil": null,
+    "hopital": "HOMEL",
+    "numOrdreNational": "NUM/0000/ONMB/DEP/AAAA"
+  }
+}
+```
 
