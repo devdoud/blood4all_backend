@@ -38,7 +38,9 @@ git clone https://github.com/EtuDoud/blood4all_backend.git
 ```
 npm install
 ```
-## Signup for doctor
+# Doctor
+
+## Signup 
 ```
 https://blood4all-backend.vercel.app/api/auth/doctor/signup
 ```
@@ -102,4 +104,87 @@ https://blood4all-backend.vercel.app/api/auth/doctor/signin
   }
 }
 ```
+
+## Logout
+```
+```
+### credential
+### result
+
+## Get all doctors
+```
+https://blood4all-backend.vercel.app/api/doctor
+```
+
+### result
+```
+{
+  "doctor": [
+    {
+      "id": "clj5m9sww0000mo08tojglpa5",
+      "createdAt": "2023-06-21T11:14:10.195Z",
+      "updatedAt": "2023-06-21T11:14:10.195Z",
+      "firstname": "Adeyemi",
+      "lastname": "Olagoke",
+      "email": "adeyemi@gmail.com",
+      "telephone": "0022996173296",
+      "password": "$2b$10$MEnA7hEGWYA2NKFam1SgDeLAWJ1GrmxNVYdWCV4T2aGnDhrXFm/HO",
+      "profil": null,
+      "hopital": "CNHU",
+      "numOrdreNational": "NUM/0000/ONMB/DEP/AAAA"
+    },
+    {
+      "id": "clj5xye650000ml08m68lofnp",
+      "createdAt": "2023-06-21T16:41:13.196Z",
+      "updatedAt": "2023-06-21T16:41:13.196Z",
+      "firstname": "Alade",
+      "lastname": "Oyinbo",
+      "email": "alade@gmail.com",
+      "telephone": "0022996173296",
+      "password": "$2b$10$pzQNkYPv1WV7Fk4KEJILYuoshwCWevDtjxAbn3L0yuycGjffgW0Q6",
+      "profil": null,
+      "hopital": "HOMEL",
+      "numOrdreNational": "NUM/0000/ONMB/DEP/AAAA"
+    }
+  ]
+}
+```
+
+## Get a specific doctor by id
+```
+https://blood4all-backend.vercel.app/api/doctor/clj5m9sww0000mo08tojglpa5
+```
+### result
+
+## POST for search
+```
+https://blood4all-backend.vercel.app/api/doctor/clj5m9sww0000mo08tojglpa5
+```
+
+### credential
+```
+{
+  "groupeSanguin": "O+",
+  "nombrePoches": 2,
+  "productType": "globule rouge"
+}
+```
+
+### result
+```
+[
+  [
+    "CNHU-HKM",
+    2
+  ]
+]
+```
+
+## Generate QRcode
+```
+https://blood4all-backend.vercel.app/api/doctor/reservation
+```
+
+
+
 
