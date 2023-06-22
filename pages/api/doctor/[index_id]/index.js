@@ -169,11 +169,11 @@ export default async function handler(req, res) {
                     let searchProductType = search[2]
 
                     for (let i = 0; i < dataOfDB.length; i++) {
-                        const bankPosition = dataOfDB[i][1]
-                        const bankGroups = dataOfDB[i][2]
-                        const bankGroupsNbs = dataOfDB[i][3]
+                        const bankPosition = dataOfDB[i][2]
+                        const bankGroups = dataOfDB[i][3]
+                        const bankGroupsNbs = dataOfDB[i][4]
                         //je vais ajouter le tableau comme quatrieme element de datadb
-                        const bankGroupsProType = dataOfDB[i][4]
+                        const bankGroupsProType = dataOfDB[i][5]
 
                         const distance = Math.sqrt(Math.pow(bankPosition[0] - x, 2) + Math.pow(bankPosition[1] - y, 2))
 
