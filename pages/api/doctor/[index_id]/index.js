@@ -24,7 +24,7 @@ export default async function handler(req, res) {
             const {groupeSanguin, nombrePoches, productType} = req.body; // il est necessaire que j'ajoute ici le type de sang
             
             // [
-            //     ["Nom banque", [x, y], ["O-", "O+", "B-", "B+", "A-", "A+", "AB-", "AB+"], [5, 8, 7, 8, 9, 9], ['plasma', 'congele']]
+            //     ["Nom banque", "Adresse banque", [x, y], ["O-", "O+", "B-", "B+", "A-", "A+", "AB-", "AB+"], [5, 8, 7, 8, 9, 9], ['plasma', 'congele']]
             // ],
 
             try {
@@ -32,6 +32,7 @@ export default async function handler(req, res) {
                 const infos = await prisma.bloodBank.findMany({
                     select: {
                         nameBankBlood: true,
+                        adresse: true,
                         lagitude: true,
                         longitude: true,
                         blood: {
@@ -59,6 +60,7 @@ export default async function handler(req, res) {
                         let allBloodProductType = [];
 
                         resultats.push(info.nameBankBlood);
+                        resultats.push(info.adresse);
                         coordonnee.push(info.lagitude);
                         coordonnee.push(info.longitude);
                         resultats.push(coordonnee);
@@ -178,7 +180,7 @@ export default async function handler(req, res) {
                         if (distance <= radius) {
                             const bloodPos = dataIsInArray(bankGroups, searchedBlood)
                             if (bloodPos != -1 && bankGroupsNbs[bloodPos] >= searchNb && bankGroupsProType[bloodPos] == searchProductType) {
-                                founds.push([dataOfDB[i][0], distance])
+                                founds.push([dataOfDB[i][0], dataOfDB[i][1], distance])
                             }
                         }
                     }
