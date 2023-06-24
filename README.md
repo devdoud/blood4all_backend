@@ -154,6 +154,10 @@ https://blood4all-backend.vercel.app/api/doctor
 ```
 https://blood4all-backend.vercel.app/api/doctor/clj5m9sww0000mo08tojglpa5
 ```
+### credential
+```
+id = clj5m9sww0000mo08tojglpa5
+```
 ### result
 
 ## POST for search
@@ -175,9 +179,65 @@ https://blood4all-backend.vercel.app/api/doctor/clj5m9sww0000mo08tojglpa5
 [
   [
     "CNHU-HKM",
+    "Cotonou en face de la presidence.",
     2
   ]
 ]
+```
+
+## Get All Doctors
+```
+https://blood4all-backend.vercel.app/api/doctor
+```
+### credential
+```
+None
+```
+### results
+```
+{
+  "doctor": [
+    {
+      "id": "clj5m9sww0000mo08tojglpa5",
+      "createdAt": "2023-06-21T11:14:10.195Z",
+      "updatedAt": "2023-06-21T11:14:10.195Z",
+      "firstname": "Adeyemi",
+      "lastname": "Olagoke",
+      "email": "adeyemi@gmail.com",
+      "telephone": "0022996173296",
+      "password": "$2b$10$MEnA7hEGWYA2NKFam1SgDeLAWJ1GrmxNVYdWCV4T2aGnDhrXFm/HO",
+      "profil": null,
+      "hopital": "CNHU",
+      "numOrdreNational": "NUM/0000/ONMB/DEP/AAAA"
+    },
+    {
+      "id": "clj5xye650000ml08m68lofnp",
+      "createdAt": "2023-06-21T16:41:13.196Z",
+      "updatedAt": "2023-06-21T16:41:13.196Z",
+      "firstname": "Alade",
+      "lastname": "Oyinbo",
+      "email": "alade@gmail.com",
+      "telephone": "0022996173296",
+      "password": "$2b$10$pzQNkYPv1WV7Fk4KEJILYuoshwCWevDtjxAbn3L0yuycGjffgW0Q6",
+      "profil": null,
+      "hopital": "HOMEL",
+      "numOrdreNational": "NUM/0000/ONMB/DEP/AAAA"
+    },
+    {
+      "id": "clj6xupzd0000mk08cbi8hnou",
+      "createdAt": "2023-06-22T09:26:08.125Z",
+      "updatedAt": "2023-06-22T09:26:08.125Z",
+      "firstname": "HONVO",
+      "lastname": "Epiphane",
+      "email": "honvo@gmail.com",
+      "telephone": "0022966154804",
+      "password": "$2b$10$Z1EhJM5kFdtd9uwKd2BYquGG50JUPUR8YAkmpf8JBO50rTrYCV2Di",
+      "profil": null,
+      "hopital": "Porto-Novo National Hospital",
+      "numOrdreNational": "NUM/0000/ONMB/DEP/AAAA"
+    }
+  ]
+}
 ```
 
 ## Generate QRcode
@@ -185,6 +245,62 @@ https://blood4all-backend.vercel.app/api/doctor/clj5m9sww0000mo08tojglpa5
 https://blood4all-backend.vercel.app/api/doctor/reservation
 ```
 
+# BloodBank
+
+## Signup
+```
+https://blood4all-backend.vercel.app/api/auth/bloodbank/signup
+```
+
+### credential
+```
+{
+  "name": "Hopital Calavi",
+  "addresse": "Pas trop de aconville"
+}
+```
+
+### result
+```
+{
+  "bank": {
+    "id": "clja28ukk0000l709bohib5b4",
+    "createdAt": "2023-06-24T13:52:24.243Z",
+    "updatedAt": "2023-06-24T13:52:24.243Z",
+    "nameBankBlood": "Hopital Calavi",
+    "adresse": "Pas trop de aconville",
+    "longitude": null,
+    "lagitude": null
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsamEyOHVrazAwMDBsNzA5Ym9oaWI1YjQiLCJuYW1lQmFua0Jsb29kIjoiSG9waXRhbCBDYWxhdmkiLCJpYXQiOjE2ODc2MTQ3NDQsImV4cCI6MTY4NzYxODM0NH0.sKCR9FCARtsKgyc8j3tbn3QVpYH4br7jKkucsmNUdCc"
+}
+```
+
+## Signin
+
+### credential
+```
+```
+## Get all BloodBank
+
+## Get a specific BloodBank by Id
+
+## Create Blood
+
+## Delete a specific Blood
+
+## Update a specific Blood
+
+## Get all Blood for a specific BloodBank
+
+
+# Users
+
+## Signup
+
+## Signin
+
+## Get all users
 
 
 

@@ -82,6 +82,8 @@ model bloodBank {
   updatedAt     DateTime @updatedAt
   nameBankBlood String   @unique
   adresse       String
+  email         String   @unique
+  telephone     String
   longitude     Float?
   lagitude      Float?
   //les nouvelles infos a complete

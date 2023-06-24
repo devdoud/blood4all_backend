@@ -64,6 +64,8 @@ CREATE TABLE "bloodBank" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "nameBankBlood" TEXT NOT NULL,
     "adresse" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "telephone" TEXT NOT NULL,
     "longitude" DOUBLE PRECISION,
     "lagitude" DOUBLE PRECISION,
 
@@ -78,6 +80,9 @@ CREATE UNIQUE INDEX "Doctor_email_key" ON "Doctor"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "bloodBank_nameBankBlood_key" ON "bloodBank"("nameBankBlood");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "bloodBank_email_key" ON "bloodBank"("email");
 
 -- AddForeignKey
 ALTER TABLE "Blood" ADD CONSTRAINT "Blood_reservationId_fkey" FOREIGN KEY ("reservationId") REFERENCES "reservation"("id") ON DELETE SET NULL ON UPDATE CASCADE;

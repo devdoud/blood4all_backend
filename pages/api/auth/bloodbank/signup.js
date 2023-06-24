@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
         if(!req.body) res.status(404).json({ message: "votre formullaire ne contient aucune information" });
         //recuperer les informations du client 
-        const {name, addresse} = req.body;
+        const {name, addresse, email, telephone} = req.body;
 
         let bank
 
@@ -20,7 +20,9 @@ export default async function handler(req, res) {
                     update: {},
                     create: {
                         nameBankBlood: name,
-                        adresse: addresse
+                        adresse: addresse,
+                        email: email,
+                        telephone: telephone
                     }
                 }) 
                 

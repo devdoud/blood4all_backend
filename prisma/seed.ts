@@ -11,6 +11,8 @@ async function main() {
         create: {
             nameBankBlood: 'CNHU-HKM',
             adresse: 'Cotonou en face de la presidence.',
+            email: 'hkmcontact@gmail.com',
+            telephone: "0022996101420",
             longitude: 7,
             lagitude: 5,
             blood: {
@@ -75,6 +77,8 @@ async function main() {
         create: {
             nameBankBlood: 'CHU-MEL(HOMEL)',
             adresse: 'Cotonou',
+            email: 'melcontact@gmail.com',
+            telephone: "0022996101420",
             longitude: 2,
             lagitude: 3,
             blood: {
