@@ -328,8 +328,47 @@ https://blood4all-backend.vercel.app/api/auth/bloodbank/signin
 # Users
 
 ## Signup
+```
+https://blood4all-backend.vercel.app/api/auth/User/signup
+```
+### credential
+```
+{
+  "firstName": "ADECHIAN",
+  "lastName": "Aichath",
+  "phoneNumber": "0022990010001",
+  "email": "aichatadechian@gmail.com",
+  "password": "exempass20"
+}
+```
+### result
+```
+{
+  "user": {
+    "id": "cljaafjbg0000i6089ju269iq",
+    "createdAt": "2023-06-24T17:41:33.109Z",
+    "updatedAt": "2023-06-24T17:41:33.109Z",
+    "firstname": "ADECHIAN",
+    "lastname": "Aichath",
+    "email": "aichatadechian@gmail.com",
+    "telephone": "0022990010001",
+    "password": "exempass20",
+    "profil": null
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsamFhZmpiZzAwMDBpNjA4OWp1MjY5aXEiLCJlbWFpbCI6ImFpY2hhdGFkZWNoaWFuQGdtYWlsLmNvbSIsImlhdCI6MTY4NzYyODQ5MywiZXhwIjoxNjg3NjMyMDkzfQ.7JhfrGQIniRQdniZVHZpVpqn5DokJ1Xd1plchz8NIIo"
+}
+```
 
 ## Signin
+```
+
+```
+### credentials
+```
+```
+### result
+```
+```
 
 ## Get all users
 
