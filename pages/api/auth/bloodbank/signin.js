@@ -6,7 +6,7 @@ import { serialize } from "cookie";
 
 const resolver = async (req, res) => {
     
-    if(req.method == POST) {
+    if(req.method === 'POST') {
         const { email, password } = req.body;
 
         const user = await prisma.bloodBank.findUnique({
