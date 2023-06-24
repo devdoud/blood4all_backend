@@ -258,7 +258,8 @@ https://blood4all-backend.vercel.app/api/auth/bloodbank/signup
   "name": "hopitalf Calavi",
   "addresse": "aconville",
   "email": "calavicontact@gmail.com",
-  "telephone": "0022924000000"
+  "telephone": "0022924000000",
+  "password": "pass"
 }
 ```
 
@@ -266,17 +267,18 @@ https://blood4all-backend.vercel.app/api/auth/bloodbank/signup
 ```
 {
   "bank": {
-    "id": "clja3r9ry0000mb09neo36ymg",
-    "createdAt": "2023-06-24T14:34:43.374Z",
-    "updatedAt": "2023-06-24T14:34:43.374Z",
+    "id": "clja4gcvg0000mi09me9jqivx",
+    "createdAt": "2023-06-24T14:54:13.791Z",
+    "updatedAt": "2023-06-24T14:54:13.791Z",
     "nameBankBlood": "hopitalf Calavi",
     "adresse": "aconville",
     "email": "calavicontact@gmail.com",
+    "password": "$2b$10$zyDSvdi55S02UAYzLYUonuUmoP0U20hBwvoadJ/OHRuVaEhE01ZM2",
     "telephone": "0022924000000",
     "longitude": null,
     "lagitude": null
   },
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsamEzcjlyeTAwMDBtYjA5bmVvMzZ5bWciLCJuYW1lQmFua0Jsb29kIjoiaG9waXRhbGYgQ2FsYXZpIiwiaWF0IjoxNjg3NjE3Mjg0LCJleHAiOjE2ODc2MjA4ODR9.KzKh8_qlikO0Qn6QjsiXHCR8TMoKIUz2cokwrJ_N9Q0"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNsamE0Z2N2ZzAwMDBtaTA5bWU5anFpdngiLCJuYW1lQmFua0Jsb29kIjoiaG9waXRhbGYgQ2FsYXZpIiwiaWF0IjoxNjg3NjE4NDU0LCJleHAiOjE2ODc2MjIwNTR9.ByaLkJvq6SRcZtXTxEDygsFvq4cQuVnrE5LuSnCuioM"
 }
 ```
 
