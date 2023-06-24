@@ -283,11 +283,36 @@ https://blood4all-backend.vercel.app/api/auth/bloodbank/signup
 ```
 
 ## Signin
+```
+https://blood4all-backend.vercel.app/api/auth/bloodbank/signin
+```
 
 ### credential
 ```
+{
+  "email": "contacthsakete@exemple.com",
+  "password": "passhome"
+}
+```
+### results
+```
+{
+  "user": {
+    "id": "clja7h2ho0000l908l665mwec",
+    "createdAt": "2023-06-24T16:18:45.839Z",
+    "updatedAt": "2023-06-24T16:18:45.839Z",
+    "nameBankBlood": "hopital de zone Sakete",
+    "adresse": "Non loin du cimetiere musulman",
+    "email": "contacthsakete@exemple.com",
+    "password": "$2b$10$BwQVSOfd4/i.megyAfg83eDq8DSnOxsZtsU.BwHalFlREA.HLX3xK",
+    "telephone": "0022924000000",
+    "longitude": null,
+    "lagitude": null
+  }
+}
 ```
 ## Get all BloodBank
+
 
 ## Get a specific BloodBank by Id
 
