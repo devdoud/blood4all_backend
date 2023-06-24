@@ -14,6 +14,7 @@ async function main() {
             email: 'hkmcontact@gmail.com',
             telephone: "0022996101420",
             longitude: 7,
+            password: "passhkm",
             lagitude: 5,
             blood: {
                 create: [
@@ -79,6 +80,7 @@ async function main() {
             adresse: 'Cotonou',
             email: 'melcontact@gmail.com',
             telephone: "0022996101420",
+            password: "passhomel",
             longitude: 2,
             lagitude: 3,
             blood: {

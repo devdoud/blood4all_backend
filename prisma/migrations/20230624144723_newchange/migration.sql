@@ -65,6 +65,7 @@ CREATE TABLE "bloodBank" (
     "nameBankBlood" TEXT NOT NULL,
     "adresse" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
     "telephone" TEXT NOT NULL,
     "longitude" DOUBLE PRECISION,
     "lagitude" DOUBLE PRECISION,

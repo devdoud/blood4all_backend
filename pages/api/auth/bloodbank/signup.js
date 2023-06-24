@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
         if(!req.body) res.status(404).json({ message: "votre formullaire ne contient aucune information" });
         //recuperer les informations du client 
-        const {name, addresse, email, telephone} = req.body;
+        const {name, addresse, email, telephone, password} = req.body;
 
         let bank
 
@@ -22,7 +22,8 @@ export default async function handler(req, res) {
                         nameBankBlood: name,
                         adresse: addresse,
                         email: email,
-                        telephone: telephone
+                        telephone: telephone,
+                        password: bcrypt.hashSync(password, salt),
                     }
                 }) 
                 
