@@ -13,7 +13,7 @@ export default async function handler(req, res){
         
         try {
 
-            const qrCodeDataUrl = await QRCode.toDataURL(nom);
+            const qrCodeDataUrl = await QRCode.toDataURL(JSON.stringify(req.body));
             
             res.status(200).json({ qrCodeDataUrl });
 
