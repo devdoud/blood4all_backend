@@ -24,7 +24,7 @@ export default async function handler(req, res){
                         lastname: lastName,
                         email: email,
                         telephone: phoneNumber,
-                        password: password
+                        password: bcrypt.hashSync(password, salt),
                     }
                 }
             )

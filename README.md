@@ -372,5 +372,3 @@ https://blood4all-backend.vercel.app/api/auth/User/signup
 
 ## Get all users
 
-
-

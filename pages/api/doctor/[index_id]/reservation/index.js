@@ -9,7 +9,7 @@ export default async function handler(req, res){
             return;
         }
 
-        const { nom } = req.body;
+
         
         try {
 
