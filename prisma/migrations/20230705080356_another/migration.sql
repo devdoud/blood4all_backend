@@ -24,7 +24,7 @@ CREATE TABLE "Doctor" (
     "telephone" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "profil" TEXT,
-    "hopital" TEXT NOT NULL,
+    "hopital" TEXT,
     "numOrdreNational" TEXT NOT NULL,
 
     CONSTRAINT "Doctor_pkey" PRIMARY KEY ("id")
