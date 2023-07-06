@@ -15,7 +15,7 @@
 //         let user
 
 //         try {
-                
+
 //                 user = await prisma.doctor.upsert({
 //                     where: {  email: email },
 //                     update: {},
@@ -29,7 +29,7 @@
 //                         hopital: hopital
 //                     }
 //                 }) 
-                
+
 //                 const token = jwt.sign(
 //                     {
 //                         id: user.id,
@@ -40,7 +40,7 @@
 //                 );
 
 //                 res.status(200).json({ user, token });
-            
+
 //         } catch (error) {
 //             console.log(error);
 //             res.status(404).json({message: "veuiller bien renseigner toutes les informations demandees"})        
@@ -91,10 +91,20 @@ export default async function handler(req, res) {
           verificationCode: verificationCode,
         },
       });
+      const token = jwt.sign(
+        {
+          id: user.id,
+          email: user.email,
+        },
+        'blood',
+        { expiresIn: '1h' }
+      );
 
-      // ...
+      res.status(200).json({ user, token });
+
     } catch (error) {
-      // ...
+      console.log(error);
+      res.status(404).json({ message: "veuiller bien renseigner toutes les informations demandees" })
     }
   }
 }
@@ -119,4 +129,4 @@ async function sendVerificationCode(telephone, verificationCode) {
   });
 }
 
-  
+
