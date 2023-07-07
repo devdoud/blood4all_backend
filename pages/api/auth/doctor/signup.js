@@ -57,7 +57,7 @@ import { prisma } from "../../../../lib/prismadb";
 import { serialize } from "cookie";
 import jwt from 'jsonwebtoken';
 import randomstring from "randomstring";
-import { Client, Verify } from '@vonage/server-sdk';/ Importez la bibliothèque Vonage
+import { Client, Verify } from '@vonage/server-sdk'; // Importez la bibliothèque Vonage
 
 export default async function handler(req, res) {
   const salt = bcrypt.genSaltSync();
