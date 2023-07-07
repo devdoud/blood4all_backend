@@ -56,7 +56,7 @@ async function sendVerificationCode(telephone, verificationCode) {
   return new Promise((resolve, reject) => {
     client.messages.create(
       {
-        originator: '96173296',
+        originator: '0022996173296',
         recipients: [telephone],
         body: `Votre code de vérification est : ${verificationCode}`,
       },
