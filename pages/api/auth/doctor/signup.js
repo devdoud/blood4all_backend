@@ -57,7 +57,13 @@ import { prisma } from "../../../../lib/prismadb";
 import { serialize } from "cookie";
 import jwt from 'jsonwebtoken';
 import randomstring from "randomstring";
-import { Client, Verify } from '@vonage/server-sdk'; // Importez la bibliothèque Vonage
+import Vonage from '@vonage/server-sdk';
+
+// Initialise l'objet Vonage en dehors de la fonction
+const vonage = new Vonage({
+  apiKey: '419f13f9',
+  apiSecret: 'AK4P4tur6yJi3CN9'
+});
 
 export default async function handler(req, res) {
   const salt = bcrypt.genSaltSync();
@@ -111,12 +117,7 @@ export default async function handler(req, res) {
 
 async function sendVerificationCode(telephone, verificationCode) {
   
-  const vonage = new Client({
-    apiKey: '419f13f9',
-    apiSecret: 'AK4P4tur6yJi3CN9'
-  });
-
-  const verify = new Verify(vonage);
+  const verify = vonage.verify;
 
   const from = '96173296';
   const to = telephone;
