@@ -1,89 +1,31 @@
-// import bcrypt from "bcrypt"
-// import { prisma } from "../../../../lib/prismadb"
-// import { serialize } from "cookie";
-// import jwt from 'jsonwebtoken'
-
-// export default async function handler(req, res) {
-//     const salt = bcrypt.genSaltSync();
-
-//     if(req.method === 'POST') {
-
-//         if(!req.body) res.status(404).json({ message: "votre formullaire ne contient aucune information" });
-//         //recuperer les informations du client 
-//         const {firstname, lastname, email, telephone, password, numOrdreNational, hopital} = req.body;
-
-//         let user
-
-//         try {
-
-//                 user = await prisma.doctor.upsert({
-//                     where: {  email: email },
-//                     update: {},
-//                     create: {
-//                         firstname: firstname,
-//                         lastname: lastname,
-//                         email: email,
-//                         telephone: telephone,
-//                         password: bcrypt.hashSync(password, salt),
-//                         numOrdreNational: numOrdreNational,
-//                         hopital: hopital
-//                     }
-//                 }) 
-
-//                 const token = jwt.sign(
-//                     {
-//                         id: user.id,
-//                         email: user.email,
-//                     },
-//                    'blood',
-//                    {expiresIn: '1h'} 
-//                 );
-
-//                 res.status(200).json({ user, token });
-
-//         } catch (error) {
-//             console.log(error);
-//             res.status(404).json({message: "veuiller bien renseigner toutes les informations demandees"})        
-//         }
-
-//     } else {
-//         res.status(500).json({ message: "La methode de votre requette est invalide .. on accepte que la methode POST" });   
-//     }
-// }
-
-
 import bcrypt from "bcrypt";
 import { prisma } from "../../../../lib/prismadb";
 import { serialize } from "cookie";
 import jwt from 'jsonwebtoken';
-import randomstring from "randomstring";
-import Vonage from '@vonage/server-sdk';
+import messagebird from 'messagebird';
 
-// Initialise l'objet Vonage en dehors de la fonction
-const vonage = new Vonage({
-  apiKey: '419f13f9',
-  apiSecret: 'AK4P4tur6yJi3CN9'
-});
+// Initialize the MessageBird client
+const client = messagebird('rR3rORufpbMnjQB5vof2QmCh0');
 
 export default async function handler(req, res) {
   const salt = bcrypt.genSaltSync();
 
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     if (!req.body)
       res.status(404).json({ message: "Votre formulaire ne contient aucune information" });
+
     // Récupérer les informations du client
     const { firstname, lastname, email, telephone, password, numOrdreNational, hopital } = req.body;
 
     // Générer le code de vérification
-    const verificationCode = randomstring.generate(6);
-
-    // Envoyer le code de vérification par SMS
-    await sendVerificationCode(telephone, verificationCode);
-
-    let user;
+    const verificationCode = generateVerificationCode();
 
     try {
-      user = await prisma.doctor.upsert({
+      // Envoie du code de vérification par SMS
+      await sendVerificationCode(telephone, verificationCode);
+
+      // Enregistrer les informations de l'utilisateur avec le code de vérification
+      const user = await prisma.doctor.upsert({
         where: { email: email },
         update: {},
         create: {
@@ -97,46 +39,47 @@ export default async function handler(req, res) {
           verificationCode: verificationCode,
         },
       });
-      const token = jwt.sign(
-        {
-          id: user.id,
-          email: user.email,
-        },
-        'blood',
-        { expiresIn: '1h' }
-      );
+
+      // Générer le token JWT pour l'utilisateur
+      const token = generateJwtToken(user.id, user.email);
 
       res.status(200).json({ user, token });
-
     } catch (error) {
       console.log(error);
-      res.status(404).json({ message: "veuiller bien renseigner toutes les informations demandees" })
+      res.status(500).json({ message: "Une erreur est survenue lors du processus d'inscription" });
     }
+  } else {
+    res.status(405).json({ message: "La méthode de requête n'est pas autorisée" });
   }
+}
+
+function generateVerificationCode() {
+  // Generate a random 6-digit verification code
+  return Math.floor(100000 + Math.random() * 900000);
 }
 
 async function sendVerificationCode(telephone, verificationCode) {
-  
-  const verify = vonage.verify;
-
-  const from = '96173296';
-  const to = telephone;
-  const text = `Votre code de vérification est : ${verificationCode}`;
-
-
-  async function sendSMS() {
-    await vonage.sms.send({ to, from, text })
-      .then(resp => { 
-        console.log('Message sent successfully'); 
-        console.log(resp); })
-      .catch(
-        err => { console.log('There was an error sending the messages.'); 
-        console.error(err); });
+  try {
+    await client.messages.create({
+      originator: '96173296', // Your phone number or alphanumeric sender ID
+      recipients: [telephone],
+      body: `Votre code de vérification est : ${verificationCode}`,
+    });
+    console.log('SMS message sent successfully');
+  } catch (error) {
+    console.error('Failed to send SMS message', error);
+    throw new Error('Error sending verification code');
   }
-
-  sendSMS();
-
 }
 
-
-
+function generateJwtToken(userId, email) {
+  const token = jwt.sign(
+    {
+      id: userId,
+      email: email,
+    },
+    'YOUR_JWT_SECRET',
+    { expiresIn: '1h' }
+  );
+  return token;
+}
