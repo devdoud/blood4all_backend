@@ -2,10 +2,10 @@ import bcrypt from "bcrypt";
 import { prisma } from "../../../../lib/prismadb";
 import { serialize } from "cookie";
 import jwt from 'jsonwebtoken';
-import messagebird from 'messagebird';
+import { initClient } from 'messagebird';
 
 // Initialize the MessageBird client
-const client = messagebird('rR3rORufpbMnjQB5vof2QmCh0');
+const messagebird = initClient('rR3rORufpbMnjQB5vof2QmCh0');
 
 export default async function handler(req, res) {
   const salt = bcrypt.genSaltSync();
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
     try {
       // Envoie du code de vérification par SMS
-      await sendVerificationCode(telephone, verificationCode);
+      sendVerificationCode(telephone, verificationCode);
 
       // Enregistrer les informations de l'utilisateur avec le code de vérification
       const user = await prisma.doctor.upsert({
@@ -58,14 +58,14 @@ function generateVerificationCode() {
   return Math.floor(100000 + Math.random() * 900000);
 }
 
-async function sendVerificationCode(telephone, verificationCode) {
+function sendVerificationCode(telephone, verificationCode) {
   try {
-    await client.messages.create({
-      originator: '96173296', // Your phone number or alphanumeric sender ID
-      recipients: [telephone],
-      body: `Votre code de vérification est : ${verificationCode}`,
-    });
-    console.log('SMS message sent successfully');
+      messagebird.messages.create({
+        originator : '96173296',
+        recipients : telephone,
+        body : `Votre code de vérification est : ${verificationCode}`
+     });
+     console.log('SMS message sent successfully');
   } catch (error) {
     console.error('Failed to send SMS message', error);
     throw new Error('Error sending verification code');
