@@ -1,11 +1,11 @@
+
 import bcrypt from "bcrypt";
 import { prisma } from "../../../../lib/prismadb";
 import { serialize } from "cookie";
 import jwt from 'jsonwebtoken';
 import { initClient } from 'messagebird';
 
-// Initialize the MessageBird client
-const messagebird = initClient('rR3rORufpbMnjQB5vof2QmCh0');
+const client = initClient('rR3rORufpbMnjQB5vof2QmCh0');
 
 export default async function handler(req, res) {
   const salt = bcrypt.genSaltSync();
@@ -14,17 +14,12 @@ export default async function handler(req, res) {
     if (!req.body)
       res.status(404).json({ message: "Votre formulaire ne contient aucune information" });
 
-    // Récupérer les informations du client
     const { firstname, lastname, email, telephone, password, numOrdreNational, hopital } = req.body;
-
-    // Générer le code de vérification
     const verificationCode = generateVerificationCode();
 
     try {
-      // Envoie du code de vérification par SMS
-      sendVerificationCode(telephone, verificationCode);
+      await sendVerificationCode(telephone, verificationCode);
 
-      // Enregistrer les informations de l'utilisateur avec le code de vérification
       const user = await prisma.doctor.upsert({
         where: { email: email },
         update: {},
@@ -40,7 +35,6 @@ export default async function handler(req, res) {
         },
       });
 
-      // Générer le token JWT pour l'utilisateur
       const token = generateJwtToken(user.id, user.email);
 
       res.status(200).json({ user, token });
@@ -54,22 +48,28 @@ export default async function handler(req, res) {
 }
 
 function generateVerificationCode() {
-  // Generate a random 6-digit verification code
   return Math.floor(100000 + Math.random() * 900000);
 }
 
-function sendVerificationCode(telephone, verificationCode) {
-  try {
-      messagebird.messages.create({
-        originator : '96173296',
-        recipients : telephone,
-        body : `Votre code de vérification est : ${verificationCode}`
-     });
-     console.log('SMS message sent successfully');
-  } catch (error) {
-    console.error('Failed to send SMS message', error);
-    throw new Error('Error sending verification code');
-  }
+async function sendVerificationCode(telephone, verificationCode) {
+  return new Promise((resolve, reject) => {
+    client.messages.create(
+      {
+        originator: '96173296',
+        recipients: [telephone],
+        body: `Votre code de vérification est : ${verificationCode}`,
+      },
+      (error, response) => {
+        if (error) {
+          console.error('Failed to send SMS message', error);
+          reject(new Error('Error sending verification code'));
+        } else {
+          console.log('SMS message sent successfully');
+          resolve(response);
+        }
+      }
+    );
+  });
 }
 
 function generateJwtToken(userId, email) {
