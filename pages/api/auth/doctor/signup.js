@@ -5,7 +5,8 @@ import { serialize } from "cookie";
 import jwt from 'jsonwebtoken';
 import { initClient } from 'messagebird';
 
-const client = initClient('LvLJCUTW1p61QRR4gk3Vg9lmn');
+
+const client = initClient('dSzW9pXU3d5eakrlvcuCJLNno');
 
 export default async function handler(req, res) {
   const salt = bcrypt.genSaltSync();
