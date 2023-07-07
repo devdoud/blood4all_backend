@@ -1,12 +1,17 @@
-
 import bcrypt from "bcrypt";
 import { prisma } from "../../../../lib/prismadb";
 import { serialize } from "cookie";
 import jwt from 'jsonwebtoken';
-import { initClient } from 'messagebird';
+import nodemailer from 'nodemailer';
 
-
-const client = initClient('dSzW9pXU3d5eakrlvcuCJLNno');
+// Créer un transporteur de messagerie pour les e-mails
+const emailTransporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'bouraimawadoud@gmail.com', // Remplacez par votre adresse e-mail Gmail
+    pass: 'AdeDoud$98', // Remplacez par votre mot de passe Gmail
+  },
+});
 
 export default async function handler(req, res) {
   const salt = bcrypt.genSaltSync();
@@ -19,7 +24,7 @@ export default async function handler(req, res) {
     const verificationCode = generateVerificationCode();
 
     try {
-      await sendVerificationCode(telephone, verificationCode);
+      await sendEmail(email, "Code de vérification", `Votre code de vérification est : ${verificationCode}`);
 
       const user = await prisma.doctor.upsert({
         where: { email: email },
@@ -52,25 +57,21 @@ function generateVerificationCode() {
   return Math.floor(100000 + Math.random() * 900000);
 }
 
-async function sendVerificationCode(telephone, verificationCode) {
-  return new Promise((resolve, reject) => {
-    client.messages.create(
-      {
-        originator: '0022996173296',
-        recipients: [telephone],
-        body: `Votre code de vérification est : ${verificationCode}`,
-      },
-      (error, response) => {
-        if (error) {
-          console.error('Failed to send SMS message', error);
-          reject(new Error('Error sending verification code'));
-        } else {
-          console.log('SMS message sent successfully');
-          resolve(response);
-        }
-      }
-    );
-  });
+async function sendEmail(to, subject, message) {
+  try {
+    const mailOptions = {
+      from: 'bouraimawadoud@gmail.com', // Remplacez par votre adresse e-mail Gmail
+      to: to,
+      subject: subject,
+      text: message,
+    };
+
+    await emailTransporter.sendMail(mailOptions);
+    console.log('Email sent successfully');
+  } catch (error) {
+    console.error('Failed to send email:', error);
+    throw new Error('Error sending email');
+  }
 }
 
 function generateJwtToken(userId, email) {
@@ -79,7 +80,7 @@ function generateJwtToken(userId, email) {
       id: userId,
       email: email,
     },
-    'YOUR_JWT_SECRET',
+    'bank',
     { expiresIn: '1h' }
   );
   return token;
