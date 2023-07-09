@@ -23,7 +23,7 @@ CREATE TABLE "Doctor" (
     "email" TEXT NOT NULL,
     "telephone" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "verificationCode" TEXT NOT NULL,
+    "verificationCode" TEXT,
     "profil" TEXT,
     "hopital" TEXT,
     "numOrdreNational" TEXT NOT NULL,

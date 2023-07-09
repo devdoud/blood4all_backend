@@ -33,7 +33,7 @@ model Doctor {
   email            String   @unique
   telephone        String
   password         String
-  verificationCode String
+  verificationCode String?
   profil           String?
   //new fields
   hopital          String? // je vais enlever cette partie.
