@@ -36,7 +36,7 @@ const resolver = async (req, res) => {
     
             res.setHeader("Set-Cookie", serialized);
 
-            return res.status(200).json({ user });
+            return res.status(200).json({ user, token });
     }
 
     res.status(401).json({ message: "Password ou Email incorrecte" })
