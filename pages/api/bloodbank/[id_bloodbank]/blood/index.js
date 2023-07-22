@@ -17,13 +17,14 @@ export default async function handler(req, res) {
 
             break;
         case 'POST': 
-            const { bloodGroupe, quantity } = req.body ;
+            const { bloodGroupe, quantity, typeproduit } = req.body ;
             
             try {
                 const blood = await prisma.blood.create({
                     data: {
                         bloodGroupe: bloodGroupe,
-                        quantity: quantity
+                        quantity: quantity,
+                        productType: typeproduit
                     }
                 })
 
