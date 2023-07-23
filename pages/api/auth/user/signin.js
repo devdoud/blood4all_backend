@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import { serialize } from "cookie";
 
 
-const resolver = async (req, res) => {
+export default async function handler(req, res){
     
     if(req.method === 'POST') {
         const { email, password } = req.body;
@@ -43,5 +43,3 @@ const resolver = async (req, res) => {
 }
 
 }
-
-export default resolver;
