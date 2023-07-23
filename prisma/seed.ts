@@ -1,6 +1,6 @@
 
 import { prisma  } from "../lib/prismadb"
-import * as bcrypt from 'bcrypt';
+import bcrypt from "bcrypt"
 
 const saltRounds = 10;
 const pass1 = 'password01';
