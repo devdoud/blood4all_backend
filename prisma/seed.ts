@@ -1,7 +1,12 @@
 
 import { prisma  } from "../lib/prismadb"
+import * as bcrypt from 'bcrypt';
+
+const saltRounds = 10;
+const pass1 = 'password01';
 
 async function main() {
+    const salt = bcrypt.genSaltSync(saltRounds);
 
     // creer des banques de sang, tout en creant les sang qu'ils contiendront
 
@@ -14,7 +19,7 @@ async function main() {
             email: 'hkmcontact@gmail.com',
             telephone: "0022996101420",
             longitude: 7,
-            password: "passhkm",
+            password: bcrypt.hashSync(pass1, salt),
             lagitude: 5,
             blood: {
                 create: [
@@ -80,7 +85,7 @@ async function main() {
             adresse: 'Cotonou',
             email: 'melcontact@gmail.com',
             telephone: "0022996101420",
-            password: "passhomel",
+            password: bcrypt.hashSync(pass1, salt),
             longitude: 2,
             lagitude: 3,
             blood: {
