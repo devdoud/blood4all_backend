@@ -1,5 +1,5 @@
 
-import { prisma } from '../../../../../lib/prismadb'
+import { prisma } from '@/lib/prismadb';
 
 export default async function handler(req, res) {
     const method = req.method
@@ -16,6 +16,7 @@ export default async function handler(req, res) {
             }
 
             break;
+        
         case 'POST': 
             const { bloodGroupe, quantity, typeproduit } = req.body ;
             
